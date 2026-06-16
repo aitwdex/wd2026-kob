@@ -21,7 +21,11 @@ document.getElementById("getBtn-city").addEventListener("click", () => {
 async function getWeather() {
   try{
     // 取得して表示するまでの待機中メッセージを表示する
+    document.getElementById("weat").textContent = 
+        "取得中...";
     document.getElementById("temp").textContent = 
+        "取得中...";
+    document.getElementById("wind").textContent = 
         "取得中...";
 
     // 四つの都市の現在の天気を取得するURL
@@ -60,8 +64,12 @@ async function getWeather() {
     const color = codeToColor(code);
 
     // ⑤ DOMに表示する
+    document.getElementById("weat").textContent =
+        `${weather}`;
     document.getElementById("temp").textContent =
-        `天気:${weather} / 気温:${temp}℃ / 風速:${wind} km/h`;
+        `${temp}℃ `;
+    document.getElementById("wind").textContent =
+        `${wind} km/h`;
     
     document.getElementById("body").style.backgroundColor =
         color;
@@ -73,7 +81,9 @@ async function getWeather() {
   catch(error){
     // 通信に失敗したらここに来る
     console.error("取得に失敗しました:", error);
+    document.getElementById("weat").textContent = "取得に失敗しました";
     document.getElementById("temp").textContent = "取得に失敗しました";
+    document.getElementById("wind").textContent = "取得に失敗しました";
   }
   
 }
